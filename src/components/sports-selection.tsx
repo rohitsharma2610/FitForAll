@@ -31,48 +31,78 @@ export function SportsSelection() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 py-20">
-      <div className="container mx-auto px-4">
-        <motion.h2
+    <>
+    <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12 text-center text-4xl font-bold text-white"
+          className=" text-center text-8xl font-bold text-cyan-500   bg-gray-900 py-20 px-8 m-0 "
         >
           Choose Your Sport
         </motion.h2>
+    <div className="flex flex-row min-h-screen bg-gray-900 py-20 px-8">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+      {/* Left Section - Images & Icons */}
+      <div className="w-1/2 flex flex-col items-center justify-center p-6">
+        <motion.img
+          src="https://www.shutterstock.com/shutterstock/photos/1402244102/display_1500/stock-photo-sport-collage-made-of-different-photos-of-models-tennis-running-badminton-soccer-and-1402244102.jpg"
+          alt="Sports"
+          className="rounded-2xl shadow-lg w-fit h-auto  mb-9 "
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        />
+         <motion.p
+          className="text-white text-lg text-center mb-7"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          "Unlock your potential. Choose your sport and begin training!"
+        </motion.p>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.img
+          src="https://thumbs.dreamstime.com/z/creative-collage-young-people-men-women-motion-practicing-performing-different-sports-against-dark-background-abstract-338809764.jpg?ct=jpeg"
+          alt="Sports"
+          className="rounded-2xl shadow-lg w-fit h-auto  mb-6 "
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        />
+       
+      </div>
+
+      {/* Right Section - Sport Selection */}
+      <div className="w-1/2 flex flex-col justify-center items-center">
+        
+        <div className="grid grid-cols-2 gap-6">
           {sports.map((sport) => (
             <motion.div
               key={sport.id}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={cn(
-                'group cursor-pointer rounded-xl bg-gray-800 p-6 transition-all',
+                'h-72 w-72 group cursor-pointer rounded-xl bg-gray-800 p-6 transition-all flex flex-col items-center justify-center',
                 selectedSport === sport.id && 'ring-2 ring-blue-500'
               )}
               onClick={() => setSelectedSport(sport.id)}
             >
-              <div className="flex flex-col items-center">
-                <motion.div
-                  className="mb-4 rounded-full bg-gray-700 p-4"
-                  animate={{
-                    rotate: selectedSport === sport.id ? 360 : 0,
-                  }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <sport.icon className="h-12 w-12 text-blue-400" />
-                </motion.div>
-                <h3 className="text-xl font-semibold text-white">{sport.name}</h3>
-              </div>
+              <motion.div
+                className="mb-4 rounded-full bg-gray-700 p-4"
+                animate={{ rotate: selectedSport === sport.id ? 360 : 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <sport.icon className="h-12 w-12 text-blue-400" />
+              </motion.div>
+              <h3 className="text-xl font-semibold text-white">{sport.name}</h3>
             </motion.div>
           ))}
         </div>
 
+        {/* Continue Button */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: selectedSport ? 1 : 0 }}
-          className="mt-12 flex justify-center"
+          className="mt-8"
         >
           <button
             onClick={handleContinue}
@@ -87,5 +117,6 @@ export function SportsSelection() {
         </motion.div>
       </div>
     </div>
+    </>
   );
 }
