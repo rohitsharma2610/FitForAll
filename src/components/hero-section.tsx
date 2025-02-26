@@ -174,7 +174,7 @@ const ContactForm = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                action="https://submit-form.com/t7GxSF3ym"
+                action="https://submit-form.com/lznDoWOmT"
                 method="POST"
                 className="space-y-4"
                 onSubmit={handleSubmit}
