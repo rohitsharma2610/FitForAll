@@ -105,7 +105,7 @@ const featureDetails = [
     longDescription:
       "When competition day arrives, be confident that you're prepared to perform at your absolute best. Our competition preparation program covers everything from nutrition timing to warm-up routines, ensuring you're physically and mentally ready to excel when it counts.",
     image:
-      'https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=2070&q=80',
+      'https://media.istockphoto.com/id/517875398/photo/athlete-holding-trophy-cup.jpg?s=2048x2048&w=is&k=20&c=NVnNPc29rpzwt8kh3rkfOgcVgQ6V2hNO5Yw04VXm8YY=',
     benefits: [
       'Peak performance timing',
       'Competition strategies',

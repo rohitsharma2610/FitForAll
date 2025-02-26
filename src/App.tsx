@@ -3,9 +3,11 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HeroSection } from './components/hero-section';
 import { SportsSelection } from './components/sports-selection';
 import { TrainingView } from './components/training-view';
+import Profile from './components/Profile';
 
 function App() {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HeroSection />} />
