@@ -2,6 +2,8 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Dumbbell, Target, Brain, Trophy, ArrowRight, Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+
 
 const athletes = [
   {
@@ -137,74 +139,54 @@ const ContactForm = () => {
           </motion.div>
           <div>
             <AnimatePresence mode="wait">
-              {isSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  className="h-full flex items-center justify-center"
-                >
-                  <div className="text-center">
-                    <motion.div
-                      animate={{ 
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 10, -10, 0]
-                      }}
-                      transition={{ duration: 0.5 }}
-                      className="text-cyan-500 mb-4"
-                    >
-                      <Send className="h-16 w-16 mx-auto" />
-                    </motion.div>
-                    <h4 className="text-2xl font-bold text-white mb-2">Message Sent!</h4>
-                    <p className="text-gray-400">We'll get back to you soon.</p>
-                  </div>
+              <motion.form
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                action="https://submit-form.com/t7GxSF3ym"
+                method="POST"
+                className="space-y-4"
+              >
+                <motion.div whileHover={{ y: -2 }}>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+                  />
                 </motion.div>
-              ) : (
-                <motion.form
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  onSubmit={handleSubmit}
-                  className="space-y-4"
+                <motion.div whileHover={{ y: -2 }}>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+                  />
+                </motion.div>
+                <motion.div whileHover={{ y: -2 }}>
+                  <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+                  />
+                </motion.div>
+                <motion.button
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold py-3 rounded-lg transition-all"
                 >
-                  <motion.div whileHover={{ y: -2 }}>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-                    />
-                  </motion.div>
-                  <motion.div whileHover={{ y: -2 }}>
-                    <input
-                      type="email"
-                      placeholder="Email Address"
-                      className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-                    />
-                  </motion.div>
-                  <motion.div whileHover={{ y: -2 }}>
-                    <textarea
-                      placeholder="Your Message"
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-                    />
-                  </motion.div>
-                  <motion.button
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold py-3 rounded-lg transition-all"
-                  >
-                    Send Message
-                  </motion.button>
-                </motion.form>
-              )}
+                  Send Message
+                </motion.button>
+              </motion.form>
             </AnimatePresence>
           </div>
         </div>
       </div>
     </div>
   );
-};
+};  
 
 const FeatureSection = ({ feature, index }: { feature: typeof featureDetails[0], index: number }) => {
   const isEven = index % 2 === 0;
@@ -320,33 +302,45 @@ export function HeroSection() {
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 transition-all duration-300 backdrop-blur-md bg-black/20">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-cyan-500 text-3xl font-bold cursor-pointer flex items-center gap-2"
-          onClick={() => navigate('/')}
+  <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 transition-all duration-300 backdrop-blur-md bg-black/20">
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="text-cyan-500 text-3xl font-bold cursor-pointer flex items-center gap-2"
+      onClick={() => navigate('/')}
+    >
+      <Trophy className="h-8 w-8" />
+      FitForAll
+    </motion.div>
+    <motion.div 
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="flex space-x-6 items-center"
+    >
+      {['Home', 'About', 'Services', 'Contact'].map((item) => (
+        <button
+          key={item}
+          className="text-cyan-500 hover:text-white transition-colors duration-300 text-lg font-medium relative group"
+          onClick={() => navigate(item === 'Home' ? '/' : `/${item.toLowerCase()}`)}
         >
-          <Trophy className="h-8 w-8" />
-          FitForAll
-        </motion.div>
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex space-x-6"
-        >
-          {['Home', 'About', 'Services', 'Contact'].map((item, index) => (
-            <button
-              key={item}
-              className="text-cyan-500 hover:text-white transition-colors duration-300 text-lg font-medium relative group"
-              onClick={() => navigate(item === 'Home' ? '/' : `/${item.toLowerCase()}`)}
-            >
-              {item}
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+          {item}
+          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+        </button>
+      ))}
+      {/* Clerk SignInButton */}
+      <SignedOut>
+          <SignInButton mode="modal">
+            <button className="text-cyan-500 hover:text-white transition-colors duration-300 text-lg font-medium">
+              Sign In
             </button>
-          ))}
-        </motion.div>
-      </nav>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+    </motion.div>
+  </nav>
+  
 
       {athletes.map((athlete, index) => (
         <motion.div
