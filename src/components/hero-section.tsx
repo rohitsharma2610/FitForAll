@@ -1,93 +1,123 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, Dumbbell, Target, Brain, Trophy, ArrowRight, Mail, Phone, MapPin, Send } from 'lucide-react';
+import {
+  ChevronRight,
+  Dumbbell,
+  Target,
+  Brain,
+  Trophy,
+  ArrowRight,
+  Mail,
+  Phone,
+  MapPin,
+  Send
+} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+import ChatbotWidget from './ChatbotWidget';
 
-
+/* --------------------------------------------------
+   Example Data (Unchanged)
+-------------------------------------------------- */
 const athletes = [
   {
     name: 'Football Player',
-    image: 'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=2000&q=80',
-    quote: "Push your limits on the field",
-  }, 
+    image:
+      'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=2000&q=80',
+    quote: 'Push your limits on the field'
+  },
   {
     name: 'MMA Fighter',
-    image: 'https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=2000&q=80',
-    quote: "Victory is earned in training",
+    image:
+      'https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=2000&q=80',
+    quote: 'Victory is earned in training'
   },
   {
     name: 'Basketball Player',
-    image: 'https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=2000&q=80',
-    quote: "Rise above the competition",
+    image:
+      'https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=2000&q=80',
+    quote: 'Rise above the competition'
   },
   {
     name: 'Swimming',
-    image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=2000&q=80',
-    quote: "Make waves in your journey",
+    image:
+      'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=2000&q=80',
+    quote: 'Make waves in your journey'
   },
   {
     name: 'Track and Field',
-    image: 'https://images.unsplash.com/photo-1533561052604-c3beb6d55b8d?auto=format&fit=crop&w=2000&q=80',
-    quote: "Break records, set new standards",
+    image:
+      'https://images.unsplash.com/photo-1533561052604-c3beb6d55b8d?auto=format&fit=crop&w=2000&q=80',
+    quote: 'Break records, set new standards'
   }
 ];
 
 const featureDetails = [
   {
     icon: <Dumbbell className="h-8 w-8" />,
-    title: "Personalized Training",
-    description: "Custom programs designed for your specific goals and sport",
-    longDescription: "Experience training like never before with our AI-powered personalized programs. We analyze your current fitness level, goals, and sport-specific requirements to create a tailored training regimen that evolves with you. Our adaptive system adjusts your workouts based on your progress, ensuring optimal results.",
-    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=2070&q=80",
+    title: 'Personalized Training',
+    description: 'Custom programs designed for your specific goals and sport',
+    longDescription:
+      'Experience training like never before with our AI-powered personalized programs. We analyze your current fitness level, goals, and sport-specific requirements to create a tailored training regimen that evolves with you. Our adaptive system adjusts your workouts based on your progress, ensuring optimal results.',
+    image:
+      'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=2070&q=80',
     benefits: [
-      "Custom workout plans",
-      "Real-time adjustments",
-      "Sport-specific training",
-      "Progress tracking"
+      'Custom workout plans',
+      'Real-time adjustments',
+      'Sport-specific training',
+      'Progress tracking'
     ]
   },
   {
     icon: <Target className="h-8 w-8" />,
-    title: "Goal Tracking",
-    description: "Monitor your progress with advanced metrics and analytics",
-    longDescription: "Stay motivated and informed with our comprehensive goal tracking system. Watch your progress unfold through detailed analytics, performance metrics, and visual progress indicators. Set both short-term and long-term goals while our intelligent system helps you stay on track.",
-    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=2070&q=80",
+    title: 'Goal Tracking',
+    description: 'Monitor your progress with advanced metrics and analytics',
+    longDescription:
+      'Stay motivated and informed with our comprehensive goal tracking system. Watch your progress unfold through detailed analytics, performance metrics, and visual progress indicators. Set both short-term and long-term goals while our intelligent system helps you stay on track.',
+    image:
+      'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=2070&q=80',
     benefits: [
-      "Visual progress tracking",
-      "Performance analytics",
-      "Milestone celebrations",
-      "Adaptive goal setting"
+      'Visual progress tracking',
+      'Performance analytics',
+      'Milestone celebrations',
+      'Adaptive goal setting'
     ]
   },
   {
     icon: <Brain className="h-8 w-8" />,
-    title: "Mental Conditioning",
-    description: "Develop the mindset of a champion",
-    longDescription: "Success in sports is as much mental as it is physical. Our mental conditioning program helps you develop the psychological resilience and focus needed to perform at your peak. Learn techniques used by elite athletes to overcome challenges and maintain composure under pressure.",
-    image: "https://images.unsplash.com/photo-1593810450967-f9c42742e326?auto=format&fit=crop&w=2070&q=80",
+    title: 'Mental Conditioning',
+    description: 'Develop the mindset of a champion',
+    longDescription:
+      'Success in sports is as much mental as it is physical. Our mental conditioning program helps you develop the psychological resilience and focus needed to perform at your peak. Learn techniques used by elite athletes to overcome challenges and maintain composure under pressure.',
+    image:
+      'https://images.unsplash.com/photo-1593810450967-f9c42742e326?auto=format&fit=crop&w=2070&q=80',
     benefits: [
-      "Stress management",
-      "Focus enhancement",
-      "Confidence building",
-      "Performance visualization"
+      'Stress management',
+      'Focus enhancement',
+      'Confidence building',
+      'Performance visualization'
     ]
   },
   {
     icon: <Trophy className="h-8 w-8" />,
-    title: "Competition Ready",
-    description: "Prepare for peak performance when it matters most",
-    longDescription: "When competition day arrives, be confident that you're prepared to perform at your absolute best. Our competition preparation program covers everything from nutrition timing to warm-up routines, ensuring you're physically and mentally ready to excel when it counts.",
-    image: "https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=2070&q=80",
+    title: 'Competition Ready',
+    description: 'Prepare for peak performance when it matters most',
+    longDescription:
+      "When competition day arrives, be confident that you're prepared to perform at your absolute best. Our competition preparation program covers everything from nutrition timing to warm-up routines, ensuring you're physically and mentally ready to excel when it counts.",
+    image:
+      'https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=2070&q=80',
     benefits: [
-      "Peak performance timing",
-      "Competition strategies",
-      "Recovery optimization",
-      "Pre-event preparation"
+      'Peak performance timing',
+      'Competition strategies',
+      'Recovery optimization',
+      'Pre-event preparation'
     ]
   }
 ];
 
+/* --------------------------------------------------
+   ContactForm Component (Unchanged)
+-------------------------------------------------- */
 const ContactForm = () => {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
@@ -108,29 +138,30 @@ const ContactForm = () => {
           >
             <h3 className="text-3xl font-bold text-white mb-6">Get in Touch</h3>
             <p className="text-gray-400 mb-8">
-              Ready to transform your athletic performance? Contact us today and let's discuss how we can help you achieve your goals.
+              Ready to transform your athletic performance? Contact us today and
+              let's discuss how we can help you achieve your goals.
             </p>
             <div className="space-y-4">
-              <motion.div 
+              <motion.div
                 className="flex items-center text-gray-300"
                 whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: 'spring', stiffness: 300 }}
               >
                 <Mail className="h-5 w-5 text-cyan-500 mr-3" />
                 <span>contact@fitforall.com</span>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-center text-gray-300"
                 whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: 'spring', stiffness: 300 }}
               >
                 <Phone className="h-5 w-5 text-cyan-500 mr-3" />
                 <span>+1 (555) 123-4567</span>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="flex items-center text-gray-300"
                 whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: 'spring', stiffness: 300 }}
               >
                 <MapPin className="h-5 w-5 text-cyan-500 mr-3" />
                 <span>123 Fitness Street, Gym City, SP 12345</span>
@@ -146,6 +177,7 @@ const ContactForm = () => {
                 action="https://submit-form.com/t7GxSF3ym"
                 method="POST"
                 className="space-y-4"
+                onSubmit={handleSubmit}
               >
                 <motion.div whileHover={{ y: -2 }}>
                   <input
@@ -185,22 +217,36 @@ const ContactForm = () => {
         </div>
       </div>
     </div>
+    
   );
-};  
+};
 
-const FeatureSection = ({ feature, index }: { feature: typeof featureDetails[0], index: number }) => {
+/* --------------------------------------------------
+   FeatureSection Component (Unchanged)
+-------------------------------------------------- */
+const FeatureSection = ({
+  feature,
+  index
+}: {
+  feature: typeof featureDetails[0];
+  index: number;
+}) => {
   const isEven = index % 2 === 0;
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.8 }}
       className="py-20 px-4"
     >
       <div className="max-w-7xl mx-auto">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${isEven ? '' : 'lg:flex-row-reverse'}`}>
+        <div
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+            isEven ? '' : 'lg:flex-row-reverse'
+          }`}
+        >
           <div className={`space-y-6 ${isEven ? 'lg:pr-12' : 'lg:pl-12'}`}>
             <div className="flex items-center gap-3 text-cyan-500">
               {feature.icon}
@@ -210,7 +256,9 @@ const FeatureSection = ({ feature, index }: { feature: typeof featureDetails[0],
               {feature.longDescription}
             </p>
             <div className="space-y-4">
-              <h4 className="text-xl font-semibold text-white">Key Benefits:</h4>
+              <h4 className="text-xl font-semibold text-white">
+                Key Benefits:
+              </h4>
               <ul className="space-y-3">
                 {feature.benefits.map((benefit, i) => (
                   <motion.li
@@ -241,7 +289,9 @@ const FeatureSection = ({ feature, index }: { feature: typeof featureDetails[0],
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className={`relative group ${isEven ? 'lg:order-last' : 'lg:order-first'}`}
+            className={`relative group ${
+              isEven ? 'lg:order-last' : 'lg:order-first'
+            }`}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity" />
             <img
@@ -256,16 +306,20 @@ const FeatureSection = ({ feature, index }: { feature: typeof featureDetails[0],
   );
 };
 
+/* --------------------------------------------------
+   HeroSection Component with Chatbase Fixes
+-------------------------------------------------- */
 export function HeroSection() {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [isVisible, setIsVisible] = React.useState(false);
 
+  // Slideshow and scroll effect
   React.useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % athletes.length);
     }, 5000);
-    
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsVisible(scrollPosition > 100);
@@ -279,6 +333,8 @@ export function HeroSection() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+ 
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -302,46 +358,49 @@ export function HeroSection() {
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-white">
-  <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 transition-all duration-300 backdrop-blur-md bg-black/20">
-    <motion.div 
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="text-cyan-500 text-3xl font-bold cursor-pointer flex items-center gap-2"
-      onClick={() => navigate('/')}
-    >
-      <Trophy className="h-8 w-8" />
-      FitForAll
-    </motion.div>
-    <motion.div 
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="flex space-x-6 items-center"
-    >
-      {['Home', 'About', 'Services', 'Contact'].map((item) => (
-        <button
-          key={item}
-          className="text-cyan-500 hover:text-white transition-colors duration-300 text-lg font-medium relative group"
-          onClick={() => navigate(item === 'Home' ? '/' : `/${item.toLowerCase()}`)}
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 transition-all duration-300 backdrop-blur-md bg-black/20">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="text-cyan-500 text-3xl font-bold cursor-pointer flex items-center gap-2"
+          onClick={() => navigate('/')}
         >
-          {item}
-          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-        </button>
-      ))}
-      {/* Clerk SignInButton */}
-      <SignedOut>
-          <SignInButton mode="modal">
-            <button className="text-cyan-500 hover:text-white transition-colors duration-300 text-lg font-medium">
-              Sign In
+          <Trophy className="h-8 w-8" />
+          FitForAll
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="flex space-x-6 items-center"
+        >
+          {['Home', 'About', 'Services', 'Contact'].map((item) => (
+            <button
+              key={item}
+              className="text-cyan-500 hover:text-white transition-colors duration-300 text-lg font-medium relative group"
+              onClick={() =>
+                navigate(item === 'Home' ? '/' : `/${item.toLowerCase()}`)
+              }
+            >
+              {item}
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </button>
-          </SignInButton>
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-    </motion.div>
-  </nav>
-  
+          ))}
+          {/* Clerk SignInButton */}
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="text-cyan-500 hover:text-white transition-colors duration-300 text-lg font-medium">
+                Sign In
+              </button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </motion.div>
+      </nav>
 
+      {/* Background Slides */}
       {athletes.map((athlete, index) => (
         <motion.div
           key={athlete.name}
@@ -358,7 +417,10 @@ export function HeroSection() {
           </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: index === currentIndex ? 1 : 0, y: index === currentIndex ? 0 : 20 }}
+            animate={{
+              opacity: index === currentIndex ? 1 : 0,
+              y: index === currentIndex ? 0 : 20
+            }}
             transition={{ delay: 0.5, duration: 0.8 }}
             className="absolute bottom-20 left-10 text-white text-2xl font-light italic"
           >
@@ -367,6 +429,7 @@ export function HeroSection() {
         </motion.div>
       ))}
 
+      {/* Main Content */}
       <div className="relative z-10 min-h-screen">
         <div className="h-screen flex items-center justify-center px-4">
           <div className="text-center max-w-4xl mx-auto">
@@ -414,9 +477,10 @@ export function HeroSection() {
           </div>
         </div>
 
+        {/* Features */}
         <div className="relative z-20 bg-black">
           <div className="py-20 px-4">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -430,6 +494,7 @@ export function HeroSection() {
           ))}
         </div>
 
+        {/* Contact Form */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -446,7 +511,11 @@ export function HeroSection() {
           <ContactForm />
         </motion.div>
       </div>
+       {/* Render ChatbotWidget (which already has a close button) */}
+       <ChatbotWidget />
     </div>
+    
+    
   );
 }
 
