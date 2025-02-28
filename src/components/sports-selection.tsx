@@ -20,7 +20,7 @@ const sports = [
     images: [
       "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
       "https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=800&q=80",
-      "https://images.unsplash.com/photo-1508098682722-e99c643e7f0b?w=800&q=80"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCdZn_xi2pRDB8magJjBpYOS-ezY9nsVvyAQ&s"
     ]
   },
   {
