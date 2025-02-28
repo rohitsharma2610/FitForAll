@@ -51,7 +51,7 @@ const products = [
     category: 'Supplements',
     price: 34.99,
     rating: 4.7,
-    image: 'https://images.unsplash.com/photo-1594226801341-41427b4e5c22?auto=format&fit=crop&w=800&q=80',
+    image: 'https://rukminim2.flixcart.com/image/850/1000/l2nmnww0/protein-supplement/l/w/f/bcaa-eaas-bcaa-rapid-energy-drink-for-quick-muscle-recovery-original-imagdy7jaeweesn8.jpeg?q=20&crop=false',
     description: 'Premium BCAA supplement with added energy boost for training.',
     tags: ['Energy', 'Recovery', 'Focus'],
     featured: false,
@@ -64,7 +64,7 @@ const products = [
     category: 'Performance',
     price: 39.99,
     rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&w=800&q=80',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXZPcU5Jd4yT2XPNHH4zjIoYr5LZM1XepiOA&s',
     description: 'Explosive energy formula with beta-alanine and caffeine for maximum performance.',
     tags: ['Energy', 'Focus', 'Strength'],
     featured: true,
@@ -77,7 +77,7 @@ const products = [
     category: 'Recovery',
     price: 32.99,
     rating: 4.5,
-    image: 'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=800&q=80',
+    image: 'https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/nel/nel01986/y/116.jpg',
     description: 'Support joint health and recovery with premium collagen peptides.',
     tags: ['Joints', 'Recovery', 'Anti-inflammatory'],
     featured: false,
@@ -90,7 +90,7 @@ const products = [
     category: 'Supplements',
     price: 28.99,
     rating: 4.6,
-    image: 'https://images.unsplash.com/photo-1577460551100-d3f84b6e4c7c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/now/now01650/l/38.jpg',
     description: 'High-potency omega-3 fatty acids for heart health and reduced inflammation.',
     tags: ['Heart Health', 'Recovery', 'Anti-inflammatory'],
     featured: false,
@@ -103,7 +103,7 @@ const products = [
     category: 'Supplements',
     price: 54.99,
     rating: 4.7,
-    image: 'https://images.unsplash.com/photo-1622485482481-487909acf1d7?auto=format&fit=crop&w=800&q=80',
+    image: 'https://cosmix.in/cdn/shop/files/500g.jpg?v=1736158796&width=832',
     description: 'Complete plant protein blend with all essential amino acids for vegan athletes.',
     tags: ['Vegan', 'Protein', 'Plant-Based'],
     featured: true,
@@ -116,7 +116,7 @@ const products = [
     category: 'Performance',
     price: 29.99,
     rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1579722821273-0f6c1b5d28b9?auto=format&fit=crop&w=800&q=80',
+    image: 'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQrFCh5v6V22m_oYyvMN8KlSD86O_iklYah6gFRrUYDLaa7NKKPwecVzKPD6egIG_apk4eGIgtZ9AnaClrOSlq-KUxaRvSHnZf26NIFooQyGGr2hfSe3QqbTcc',
     description: 'Pure micronized creatine for increased strength, power and muscle growth.',
     tags: ['Strength', 'Power', 'Muscle'],
     featured: false,
@@ -129,7 +129,7 @@ const products = [
     category: 'Recovery',
     price: 26.99,
     rating: 4.5,
-    image: 'https://images.unsplash.com/photo-1564452627303-115b5516e4b4?auto=format&fit=crop&w=800&q=80',
+    image: 'https://m.media-amazon.com/images/I/71W39QmThsL.jpg',
     description: 'Zinc, magnesium and vitamin B6 formula for enhanced recovery during sleep.',
     tags: ['Sleep', 'Recovery', 'Hormonal Support'],
     featured: false,
@@ -142,7 +142,7 @@ const products = [
     category: 'Performance',
     price: 45.99,
     rating: 4.6,
-    image: 'https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=800&q=80',
+    image: 'https://m.media-amazon.com/images/I/716gFZoVWIL._AC_SY450_PIbundle-32,TopRight,0,0_SH20_.jpg',
     description: 'Cognitive enhancer with alpha-GPC and bacopa for mental clarity and focus.',
     tags: ['Focus', 'Mental Clarity', 'Cognitive'],
     featured: true,
@@ -341,7 +341,7 @@ export function MarketView() {
               >
                 <Filter className="h-5 w-5" />
                 Filter
-                <ChevronDown className={`h-4 w-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`h-4 w-4 transition-transform Rs{showFilters ? 'rotate-180' : ''}`} />
               </button>
               
               {showFilters && (
@@ -353,8 +353,8 @@ export function MarketView() {
                   <div className="mb-4">
                     <h3 className="mb-2 text-sm font-medium text-white">Price Range</h3>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-400">${priceRange[0]}</span>
-                      <span className="text-sm text-gray-400">${priceRange[1]}</span>
+                      <span className="text-sm text-gray-400">Rs{priceRange[0]}</span>
+                      <span className="text-sm text-gray-400">Rs{priceRange[1]}</span>
                     </div>
                     <input
                       type="range"
@@ -373,7 +373,7 @@ export function MarketView() {
                         <button
                           key={rating}
                           onClick={() => setRatingFilter(rating)}
-                          className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                          className={`flex h-8 w-8 items-center justify-center rounded-full Rs{
                             ratingFilter >= rating ? 'bg-yellow-500 text-gray-900' : 'bg-gray-700 text-gray-400'
                           }`}
                         >
@@ -425,7 +425,7 @@ export function MarketView() {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`shrink-0 rounded-full px-4 py-2 font-medium transition-colors ${
+                className={`shrink-0 rounded-full px-4 py-2 font-medium transition-colors Rs{
                   selectedCategory === category
                     ? 'bg-blue-500 text-white'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
@@ -505,11 +505,11 @@ export function MarketView() {
                   <div className="text-right">
                     {product.discount > 0 ? (
                       <>
-                        <p className="text-lg font-bold text-white">${(product.price * (1 - product.discount / 100)).toFixed(2)}</p>
-                        <p className="text-sm text-gray-400 line-through">${product.price.toFixed(2)}</p>
+                        <p className="text-lg font-bold text-white">Rs{(product.price * (1 - product.discount / 100)).toFixed(2)}</p>
+                        <p className="text-sm text-gray-400 line-through">Rs{product.price.toFixed(2)}</p>
                       </>
                     ) : (
-                      <p className="text-lg font-bold text-white">${product.price.toFixed(2)}</p>
+                      <p className="text-lg font-bold text-white">Rs{product.price.toFixed(2)}</p>
                     )}
                   </div>
                 </div>
@@ -577,8 +577,8 @@ export function MarketView() {
                 protein, BCAAs, creatine, and ZMA for complete performance and recovery support.
               </p>
               <div className="mb-6 flex items-center gap-4">
-                <div className="text-3xl font-bold text-white">$149.99</div>
-                <div className="text-xl text-gray-400 line-through">$199.99</div>
+                <div className="text-3xl font-bold text-white">Rs149.99</div>
+                <div className="text-xl text-gray-400 line-through">Rs199.99</div>
                 <div className="rounded-full bg-red-500 px-3 py-1 text-sm font-bold text-white">
                   SAVE 25%
                 </div>
@@ -598,7 +598,7 @@ export function MarketView() {
             </div>
             <div className="relative h-64 md:h-auto">
               <img 
-                src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?auto=format&fit=crop&w=800&q=80" 
+                src="https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ad7d2a07af504e8a8ee4676bb4faa011_9366/Yoga_Duffel_Bag_Pink_JE3222_01_00_standard.jpg" 
                 alt="Ultimate Performance Stack" 
                 className="h-full w-full object-cover"
               />
