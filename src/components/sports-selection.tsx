@@ -19,8 +19,8 @@ const sports = [
     icon: Football,
     images: [
       "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&q=80",
-      "https://media.istockphoto.com/id/2148699487/photo/close-up-on-legs-of-professional-football-player-dribbling-with-a-ball-during-international.jpg?s=2048x2048&w=is&k=20&c=R5vCh6fQ9zeccajH0Wa5bzcZuo3cMcnSBo4T4muWF7k=",
-      "https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=800&q=80"
+      "https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=800&q=80",
+      "https://images.unsplash.com/photo-1508098682722-e99c643e7f0b?w=800&q=80"
     ]
   },
   {
@@ -42,7 +42,7 @@ const sports = [
     images: [
       "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&q=80",
       "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&q=80",
-      "https://plus.unsplash.com/premium_photo-1666913667082-c1fecc45275d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "https://images.unsplash.com/photo-1531315630201-bb15abeb1653?w=800&q=80"
     ]
   },
   {
@@ -62,9 +62,9 @@ const sports = [
     description: 'Master the art of wrestling with our intensive training programs. Build strength, learn takedown techniques, and develop the mental toughness needed to excel.',
     icon: Wrestling,
     images: [
-      "https://plus.unsplash.com/premium_photo-1664304747805-24b97bddf900?q=80&w=1657&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1611338631743-b0362363f417?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1576149146095-caa19d4de102?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      "https://images.unsplash.com/photo-1611338631743-b0362363f417?w=800&q=80",
+      "https://images.unsplash.com/photo-1576149146095-caa19d4de102?w=800&q=80",
+      "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&q=80"
     ]
   },
   {
@@ -109,7 +109,7 @@ export function SportsSelection() {
     }));
   };
 
-  const stars = generateStars(100);
+  const stars = generateStars(150);
 
   return (
     <div className="min-h-screen bg-gray-900 overflow-x-hidden relative">
@@ -137,6 +137,45 @@ export function SportsSelection() {
             }}
           />
         ))}
+        
+        {/* Shooting stars */}
+        <motion.div
+          className="absolute h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent"
+          style={{
+            width: '150px',
+            left: '-150px',
+            top: '20%',
+            rotate: '30deg'
+          }}
+          animate={{
+            left: ['0%', '120%'],
+            opacity: [0, 1, 0]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatDelay: 15
+          }}
+        />
+        <motion.div
+          className="absolute h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
+          style={{
+            width: '200px',
+            left: '-200px',
+            top: '60%',
+            rotate: '15deg'
+          }}
+          animate={{
+            left: ['0%', '120%'],
+            opacity: [0, 1, 0]
+          }}
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            repeatDelay: 23,
+            delay: 5
+          }}
+        />
       </div>
 
       {/* Header */}
