@@ -11,8 +11,11 @@ import {
   Clock,
   Users,
   MessageSquare,
-  Heart
+  Heart,
+  ShoppingBasket,
+  Apple
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 function Profile() {
   const freeFeatures = [
@@ -45,7 +48,7 @@ function Profile() {
           <div className="bg-slate-900/70 rounded-2xl p-6 backdrop-blur-xl border border-slate-800/50 shadow-xl">
             <div className="flex items-center gap-3 mb-8">
               <div className="relative">
-                <Boxes className="h-10 w-10 text-purple-500" />
+                <Trophy className="h-10 w-10 text-purple-500" />
                 <div className="absolute inset-0 animate-pulse bg-purple-500/20 rounded-lg blur"></div>
               </div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent">
@@ -79,40 +82,56 @@ function Profile() {
 
 <div className="space-y-3">
   {/* Progress Button */}
+  <Link to="/progressTracker">
   <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all  text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
     <div className="flex items-center gap-3">
       <BarChart3 className="h-5 w-5" />
       <span className="font-medium">Progress</span>
     </div>
     <ChevronRight className="h-4 w-4 transition-transform rotate-90" />
-  </button>
+  </button></Link>
 
   {/* Choose Sports Button */}
+  <Link to="/sports">
   <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
     <div className="flex items-center gap-3">
       <Dumbbell className="h-5 w-5" />
       <span className="font-medium">Choose Sports</span>
     </div>
     <ChevronRight className="h-4 w-4 transition-transform" />
-  </button>
+  </button></Link>
 
-  {/* Settings Button */}
+  {/* Market Button */}
+
+  <Link to="/market">
   <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
     <div className="flex items-center gap-3">
-      <Settings className="h-5 w-5" />
-      <span className="font-medium">Settings</span>
+      <ShoppingBasket className="h-5 w-5" />
+      <span className="font-medium">Market</span>
     </div>
     <ChevronRight className="h-4 w-4 transition-transform" />
-  </button>
+  </button></Link>
+
+ 
+  {/* Settings Button */}
+  <Link to="/calorie">
+  <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
+    <div className="flex items-center gap-3">
+      <Apple className="h-5 w-5" />
+      <span className="font-medium">Calorie Counter</span>
+    </div>
+    <ChevronRight className="h-4 w-4 transition-transform" />
+  </button></Link>
 
   {/* Logout Button */}
+  <Link to="/">
   <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
     <div className="flex items-center gap-3">
       <LogOut className="h-5 w-5" />
-      <span className="font-medium">Logout</span>
+      <span className="font-medium ">Logout</span>
     </div>
     <ChevronRight className="h-4 w-4 transition-transform" />
-  </button>
+  </button></Link>
 </div>
 
             </div>
@@ -121,7 +140,7 @@ function Profile() {
           {/* Center Section - App Description & Features */}
           <div className="space-y-6">
             <div className="bg-slate-900/70 rounded-2xl p-6 backdrop-blur-xl border border-slate-800/50 shadow-xl">
-            <Boxes className="h-10 w-10 text-purple-500 inline mr-2 pb-2" />
+            <Trophy className="h-10 w-10 text-purple-500 inline mr-2 pb-2" />
                 {/* <div className="absolute inset-0 animate-pulse bg-purple-500/20 rounded-lg blur"></div> */}
 
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent  inline">
@@ -177,6 +196,7 @@ function Profile() {
                     </div>
                   ))}
                 </div>
+                <button className='text-purple-400 border-2 m-3 p-3 rounded-2xl border-gray-400 hover:text-gray-400 hover:border-purple-400'>Buy Premium</button>
               </div>
             </div>
           </div>

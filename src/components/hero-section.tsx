@@ -12,7 +12,7 @@ import {
   MapPin,
   Send
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import ChatbotWidget from './ChatbotWidget';
 
@@ -367,14 +367,14 @@ export function HeroSection() {
           onClick={() => navigate('/')}
         >
           <Trophy className="h-8 w-8" />
-          FitForAll
+          Elite Sports
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex space-x-6 items-center"
         >
-          {['Home', 'About', 'Services', 'Contact'].map((item) => (
+          {[''].map((item) => (
             <button
               key={item}
               className="text-cyan-500 hover:text-white transition-colors duration-300 text-lg font-medium relative group"
@@ -455,6 +455,7 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 1.5 }}
               className="flex justify-center gap-4"
             >
+              <Link to="/profile">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -463,7 +464,7 @@ export function HeroSection() {
               >
                 Get Started
                 <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </motion.button>
+              </motion.button></Link>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -486,7 +487,7 @@ export function HeroSection() {
               viewport={{ once: true }}
               className="text-4xl font-bold text-center text-white mb-16"
             >
-              Why Choose FitForAll?
+              Why Choose Elite Sports?
             </motion.h2>
           </div>
           {featureDetails.map((feature, index) => (

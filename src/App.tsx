@@ -10,18 +10,22 @@ import { ProgressTracker } from './components/progress-tracker';
 
 function App() {
   return (
-    // <Profile/>
-    // <CalorieCounter/>
+    
+   
     // <MarketView/>
-    <ProgressTracker/>
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path="/" element={<HeroSection />} />
-    //     <Route path="/sports" element={<SportsSelection />} />
-    //     <Route path="/training/:sportId" element={<TrainingView />} />
-    //     <Route path="*" element={<Navigate to="/" replace />} />
-    //   </Routes>
-    // </BrowserRouter>
+    
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HeroSection />} />
+        <Route path="/sports" element={<SportsSelection />} />
+        <Route path="/ProgressTracker" element={<ProgressTracker/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/market" element={<MarketView/>} />
+        <Route path="/calorie" element={<CalorieCounter/>} />
+        <Route path="/training/:sportId" element={<TrainingView />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
