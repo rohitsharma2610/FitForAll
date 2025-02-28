@@ -7,6 +7,7 @@ import Profile from './components/Profile';
 import { CalorieCounter } from './components/calorie-counter';
 import { MarketView } from './components/market-view';
 import { ProgressTracker } from './components/progress-tracker';
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HeroSection />} />
+        <Route path='login' element={<SignedIn/>}/>
+        <Route path='signup' element={<SignedOut/>}/>
         <Route path="/sports" element={<SportsSelection />} />
         <Route path="/ProgressTracker" element={<ProgressTracker/>} />
         <Route path="/profile" element={<Profile/>} />

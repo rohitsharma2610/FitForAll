@@ -1,9 +1,9 @@
-import React from 'react';
+
 import { 
   Boxes, 
   ChevronRight,
   BarChart3,
-  Settings,
+  
   LogOut,
   Dumbbell,
   Crown,
@@ -38,8 +38,6 @@ function Profile() {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-[40%] -left-[20%] w-[800px] h-[800px] bg-purple-500/10 rounded-full blur-3xl"></div>
         <div className="absolute top-[60%] -right-[20%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-3xl"></div>
-      
-      
       </div>
 
       <div className="relative max-w-[1400px] mx-auto px-0 py-6">
