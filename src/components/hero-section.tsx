@@ -115,14 +115,12 @@ const featureDetails = [
   }
 ];
 
-/* --------------------------------------------------
-   ContactForm Component (Unchanged)
--------------------------------------------------- */
+
 const ContactForm = () => {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    // e.preventDefault();
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3000);
   };
@@ -138,11 +136,10 @@ const ContactForm = () => {
           >
             <h3 className="text-3xl font-bold text-white mb-6">Get in Touch</h3>
             <p className="text-gray-400 mb-8">
-              Ready to transform your athletic performance? Contact us today and
-              let's discuss how we can help you achieve your goals.
+              Ready to transform your athletic performance? Contact us today and let's discuss how we can help you achieve your goals.
             </p>
             <div className="space-y-4">
-              <motion.div
+              <motion.div 
                 className="flex items-center text-gray-300"
                 whileHover={{ x: 5 }}
                 transition={{ type: 'spring', stiffness: 300 }}
@@ -150,7 +147,7 @@ const ContactForm = () => {
                 <Mail className="h-5 w-5 text-cyan-500 mr-3" />
                 <span>contact@fitforall.com</span>
               </motion.div>
-              <motion.div
+              <motion.div 
                 className="flex items-center text-gray-300"
                 whileHover={{ x: 5 }}
                 transition={{ type: 'spring', stiffness: 300 }}
@@ -158,7 +155,7 @@ const ContactForm = () => {
                 <Phone className="h-5 w-5 text-cyan-500 mr-3" />
                 <span>+1 (555) 123-4567</span>
               </motion.div>
-              <motion.div
+              <motion.div 
                 className="flex items-center text-gray-300"
                 whileHover={{ x: 5 }}
                 transition={{ type: 'spring', stiffness: 300 }}
@@ -217,9 +214,10 @@ const ContactForm = () => {
         </div>
       </div>
     </div>
-    
   );
 };
+
+
 
 /* --------------------------------------------------
    FeatureSection Component (Unchanged)
