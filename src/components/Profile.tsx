@@ -79,7 +79,6 @@ function Profile() {
               </h1>
             </div>
 
-<<<<<<< HEAD
             <div className="space-y-2">
               {/* {[
                 { icon: BarChart3, text: 'Progress', active:'' },
@@ -98,15 +97,6 @@ function Profile() {
                   <div className="flex items-center gap-3">s
                     <item.icon className="h-5 w-5" />
                     <span className="font-medium">{item.text}</span>
-=======
-            <div className="space-y-3">
-              {/* Progress Button */}
-              <Link to="/progressTracker">
-                <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
-                  <div className="flex items-center gap-3">
-                    <BarChart3 className="h-5 w-5" />
-                    <span className="font-medium">Progress</span>
->>>>>>> 455da66d5b5aaeb27b60a48820bc3293a9fd4842
                   </div>
                   <ChevronRight className="h-4 w-4 transition-transform rotate-90" />
                 </button>
@@ -161,17 +151,9 @@ function Profile() {
           {/* Center Section - App Description & Features */}
           <div className="space-y-6">
             <div className="bg-slate-900/70 rounded-2xl p-6 backdrop-blur-xl border border-slate-800/50 shadow-xl">
-<<<<<<< HEAD
-            <Trophy className="h-10 w-10 text-purple-500 inline mr-2 pb-2" />
-                {/* <div className="absolute inset-0 animate-pulse bg-purple-500/20 rounded-lg blur"></div> */}
-
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent  inline">
-                Elite Sports
-=======
               <Trophy className="h-10 w-10 text-purple-500 inline mr-2 pb-2" />
               <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent inline">
                 FitForAll
->>>>>>> 455da66d5b5aaeb27b60a48820bc3293a9fd4842
               </h1>
               <div className="block">
                 <Crown className="h-4 w-4 text-yellow-600 inline mr-2" />

@@ -787,6 +787,9 @@ export function HeroSection() {
           </motion.button>
         </SignInButton>
       </SignedOut>
+
+      <SignedOut>
+      <SignInButton redirectUrl="/profile">
               <motion.button
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
@@ -796,7 +799,11 @@ export function HeroSection() {
                 Learn More
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </motion.button>
+              </SignInButton>
+      </SignedOut>
+            
             </motion.div>
+
             
             {/* Scroll indicator */}
             <motion.div 
