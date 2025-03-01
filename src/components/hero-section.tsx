@@ -651,7 +651,7 @@ export function HeroSection() {
           animate={{ opacity: 1, x: 0 }}
           className="flex space-x-8 items-center"
         >
-          {['Home', 'Programs', 'About', 'Contact'].map((item, index) => (
+          {[''].map((item, index) => (
             <motion.button
               key={item}
               className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium relative group"

@@ -50,7 +50,7 @@ function Profile() {
                 <div className="absolute inset-0 animate-pulse bg-purple-500/20 rounded-lg blur"></div>
               </div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent">
-                FitForAll
+                Elite Sports
               </h1>
             </div>
 
@@ -69,7 +69,7 @@ function Profile() {
                       : 'text-gray-400 hover:bg-slate-800/50 hover:text-purple-400'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3">s
                     <item.icon className="h-5 w-5" />
                     <span className="font-medium">{item.text}</span>
                   </div>
@@ -142,7 +142,7 @@ function Profile() {
                 {/* <div className="absolute inset-0 animate-pulse bg-purple-500/20 rounded-lg blur"></div> */}
 
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent  inline">
-                FitForAll
+                Elite Sports
               </h1>
               <div className='block '>
            <Crown className="h-4 w-4 text-yellow-600 inline mr-2" />
