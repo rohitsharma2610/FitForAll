@@ -19,6 +19,8 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import ChatbotWidget from './ChatbotWidget';
+import { useUser } from '@clerk/clerk-react';
+
 
 /* --------------------------------------------------
    Example Data (Enhanced)
@@ -507,6 +509,11 @@ export function HeroSection() {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+  // const navigate = useNavigate();
+  const { user, isLoaded } = useUser(); // Make sure to destructure 'user' here
+ 
+
+  
 
   // Slideshow and scroll effect
   useEffect(() => {
@@ -625,74 +632,36 @@ export function HeroSection() {
         {/* Radial Gradient Overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
       </div>
-
+    
       {/* Navbar */}
-      <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 transition-all duration-500"
-        style={navbarStyle}
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-3xl font-bold cursor-pointer flex items-center gap-3"
-          onClick={() => navigate('/')}
-          whileHover={{ scale: 1.05 }}
-        >
-          <div className="p-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg">
-            <Trophy className="h-8 w-8 text-white" />
-          </div>
-          Elite Sports
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex space-x-8 items-center"
-        >
-          {[''].map((item, index) => (
-            <motion.button
-              key={item}
-              className="text-white hover:text-cyan-400 transition-colors duration-300 text-lg font-medium relative group"
-              onClick={() =>
-                navigate(item === 'Home' ? '/' : `/${item.toLowerCase()}`)
-              }
-              whileHover={{ y: -2 }}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              {item}
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </motion.button>
-          ))}
-          {/* Clerk SignInButton */}
-          <SignedOut>
-            <SignInButton mode="modal">
-              <motion.button 
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-cyan-500/30 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                Sign In
-              </motion.button>
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              <UserButton />
-            </motion.div>
-          </SignedIn>
-        </motion.div>
-      </motion.nav>
+
+    <nav className="bg-gray-800 p-4">
+      <div className="flex justify-end items-center">
+        {/* Signed-out view: Sign In button */}
+        <SignedOut>
+          <SignInButton mode="modal" afterSignInUrl="/profile">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded">
+              Sign In
+            </button>
+          </SignInButton>
+        </SignedOut>
+
+        {/* Signed-in view: Clickable avatar */}
+        <SignedIn>
+          <Link to="/profile" style={{ pointerEvents: 'auto', zIndex: 9999 }}>
+            <img
+              src={user?.imageUrl || "https://via.placeholder.com/40"}
+              alt="Profile"
+              className="h-10 w-10 rounded-full object-cover cursor-pointer"
+              onClick={() => console.log("Avatar clicked")}
+              style={{ pointerEvents: 'auto', zIndex: 9999 }}
+            />
+          </Link>
+        </SignedIn>
+      </div>
+    </nav>
+
+
 
       {/* Background Slides with Enhanced Animation */}
       {athletes.map((athlete, index) => (
