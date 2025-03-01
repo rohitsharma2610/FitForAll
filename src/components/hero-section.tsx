@@ -14,7 +14,11 @@ import {
   Star,
   ChevronDown,
   Users,
-  Clock
+  Clock,
+  Twitter,
+  Facebook,
+  Instagram,
+  Youtube
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
@@ -168,6 +172,14 @@ const stats = [
   { value: "24/7", label: "Support Available", icon: <Clock className="h-6 w-6 text-cyan-400" /> }
 ];
 
+// Social media data
+const socialMedia = [
+  { name: 'Twitter', icon: <Twitter className="h-5 w-5 text-white" />, url: '#' },
+  { name: 'Facebook', icon: <Facebook className="h-5 w-5 text-white" />, url: '#' },
+  { name: 'Instagram', icon: <Instagram className="h-5 w-5 text-white" />, url: '#' },
+  { name: 'YouTube', icon: <Youtube className="h-5 w-5 text-white" />, url: '#' }
+];
+
 /* --------------------------------------------------
    ContactForm Component (Enhanced)
 -------------------------------------------------- */
@@ -226,7 +238,7 @@ const ContactForm = () => {
                     <div className="h-10 w-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mr-4 group-hover:shadow-lg group-hover:shadow-cyan-500/20 transition-all">
                       <Mail className="h-5 w-5 text-white" />
                     </div>
-                    <span>contact@elitesports.com</span>
+                    <span>sharmajrohit1004@gmail.com</span>
                   </motion.div>
                   <motion.div 
                     className="flex items-center text-gray-200 group"
@@ -236,7 +248,7 @@ const ContactForm = () => {
                     <div className="h-10 w-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mr-4 group-hover:shadow-lg group-hover:shadow-cyan-500/20 transition-all">
                       <Phone className="h-5 w-5 text-white" />
                     </div>
-                    <span>+1 (555) 123-4567</span>
+                    <span>+91XXXXXXX </span>
                   </motion.div>
                   <motion.div 
                     className="flex items-center text-gray-200 group"
@@ -246,7 +258,7 @@ const ContactForm = () => {
                     <div className="h-10 w-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mr-4 group-hover:shadow-lg group-hover:shadow-cyan-500/20 transition-all">
                       <MapPin className="h-5 w-5 text-white" />
                     </div>
-                    <span>123 Fitness Street, Gym City, SP 12345</span>
+                    <span>NOida gym city</span>
                   </motion.div>
                 </div>
               </motion.div>
@@ -921,16 +933,17 @@ export function HeroSection() {
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Connect</h4>
               <div className="flex space-x-4">
-                {['Twitter', 'Facebook', 'Instagram', 'YouTube'].map(item => (
-                  <a 
-                    key={item} 
-                    href="#" 
+                {socialMedia.map((platform) => (
+                  <motion.a 
+                    key={platform.name} 
+                    href={platform.url} 
                     className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 transition-all"
+                    whileHover={{ y: -5, scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <span className="sr-only">{item}</span>
-                    {/* Icon placeholder */}
-                    <div className="h-5 w-5 bg-gray-400 rounded-full"></div>
-                  </a>
+                    <span className="sr-only">{platform.name}</span>
+                    {platform.icon}
+                  </motion.a>
                 ))}
               </div>
             </div>
