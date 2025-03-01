@@ -1,9 +1,8 @@
-
+import React from 'react';
 import { 
   Boxes, 
   ChevronRight,
   BarChart3,
-  
   LogOut,
   Dumbbell,
   Crown,
@@ -36,8 +35,13 @@ function Profile() {
   // Mobile number from primaryPhoneNumber
   const mobileNumber = user.primaryPhoneNumber?.phoneNumber || "Mobile number not set";
 
-  // Example: If you store preferred sports in public metadata
+  // Preferred Sports (string fallback)
   const preferredSports = user.publicMetadata?.preferredSports || "Not set";
+
+  // Safely handle user.createdAt to avoid TypeScript errors
+  const memberSince = user.createdAt
+    ? new Date(user.createdAt).toLocaleDateString()
+    : "N/A";
 
   const freeFeatures = [
     { icon: Dumbbell, text: "Basic workout tracking" },
@@ -226,9 +230,14 @@ function Profile() {
                 </div>
               </div>
 
+              {/* Safely handle user.createdAt */}
+              {/*
+                If user.createdAt can be null, we convert it safely:
+                const memberSince = user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A";
+              */}
               <div className="space-y-4">
                 {[
-                  { label: "Member Since", value: new Date(user.createdAt).toLocaleDateString() },
+                  { label: "Member Since", value: user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A" },
                   { label: "Preferred Sports", value: preferredSports },
                   { label: "Mobile Number", value: mobileNumber }
                 ].map((item, index) => (
@@ -237,7 +246,8 @@ function Profile() {
                     className="border-b border-slate-800/50 pb-3 hover:bg-slate-800/20 p-2 rounded transition-colors"
                   >
                     <p className="text-sm text-gray-500">{item.label}</p>
-                    <p className="text-white">{item.value}</p>
+                    <p className="text-white">{String(item.value)}</p>
+
                   </div>
                 ))}
               </div>
