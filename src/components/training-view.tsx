@@ -48,7 +48,7 @@ const sportsData: Record<string, {
       description: i === 0 
         ? 'Introduction to football fundamentals and basic techniques for beginners.' 
         : `Advanced training on ${['dribbling', 'passing', 'shooting', 'defending', 'tactical awareness', 'ball control', 'heading', 'free kicks', 'penalty kicks', 'goalkeeping'][i % 10]}.`,
-      videoUrl: 'https://www.youtube.com/watch?v=zyIgPqOpMWY',
+      videoUrl: 'https://www.youtube.com/watch?v=uAeTHX4hq_I',
       thumbnail: `https://images.unsplash.com/photo-${['1579952363873-27f3bade9f55', '1517927033932-b3d18e61fb3a', '1508098682722-e99c643e7f0b', '1431324155996-1f16bf0ebb7f'][i % 4]}?w=800&q=80`,
       isLocked: i > 5,
       isCompleted: i < 3,
@@ -65,7 +65,7 @@ const sportsData: Record<string, {
       description: i === 0 
         ? 'Introduction to MMA fundamentals and basic techniques for beginners.' 
         : `Advanced training on ${['striking', 'grappling', 'ground techniques', 'clinch work', 'takedowns', 'submissions', 'defense', 'footwork', 'conditioning', 'strategy'][i % 10]}.`,
-      videoUrl: 'https://www.youtube.com/watch?v=0N1_0SUGlDQ',
+      videoUrl: 'https://youtu.be/Q3mqj0S-ECY',
       thumbnail: `https://images.unsplash.com/photo-${['1615117972428-28de67cda58e', '1599058917765-a780eda07a3e', '1595078475328-1ab05d0a6a0e', '1517838277536-f5f99be501cd'][i % 4]}?w=800&q=80`,
       isLocked: i > 5,
       isCompleted: i < 3,
