@@ -772,16 +772,21 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 1.5 }}
               className="flex flex-col sm:flex-row justify-center gap-6"
             >
-              <Link to="/profile">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-lg font-semibold text-white transition-all hover:shadow-xl hover:shadow-cyan-500/30"
-                >
-                  Get Started
-                  <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </motion.button>
-              </Link>
+        <SignedOut>
+        <SignInButton redirectUrl="/profile">
+          <motion.button
+            whileHover={{ scale: 1.05, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+            className="group relative inline-flex items-center gap-2 rounded-xl
+                       bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4
+                       text-lg font-semibold text-white transition-all
+                       hover:shadow-xl hover:shadow-cyan-500/30"
+          >
+            Get Started
+            <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+          </motion.button>
+        </SignInButton>
+      </SignedOut>
               <motion.button
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}

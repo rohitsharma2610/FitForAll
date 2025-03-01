@@ -1,9 +1,8 @@
-
+import React from 'react';
 import { 
   Boxes, 
   ChevronRight,
   BarChart3,
-  
   LogOut,
   Dumbbell,
   Crown,
@@ -16,8 +15,34 @@ import {
   Apple
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useUser, SignOutButton } from '@clerk/clerk-react';
 
 function Profile() {
+  const { user, isLoaded } = useUser();
+
+  // If the user is not loaded or not logged in, show a loading state
+  if (!isLoaded || !user) {
+    return <div>Loading...</div>;
+  }
+
+  // Dynamic user details from Clerk
+  const userProfileImage = user.imageUrl || "https://via.placeholder.com/150";
+  const userName = user.firstName && user.lastName
+    ? `${user.firstName} ${user.lastName}`
+    : user.firstName || user.lastName || "User Name";
+  const userEmail = user.primaryEmailAddress?.emailAddress || "user@example.com";
+
+  // Mobile number from primaryPhoneNumber
+  const mobileNumber = user.primaryPhoneNumber?.phoneNumber || "Mobile number not set";
+
+  // Preferred Sports (string fallback)
+  const preferredSports = user.publicMetadata?.preferredSports || "Not set";
+
+  // Safely handle user.createdAt to avoid TypeScript errors
+  const memberSince = user.createdAt
+    ? new Date(user.createdAt).toLocaleDateString()
+    : "N/A";
+
   const freeFeatures = [
     { icon: Dumbbell, text: "Basic workout tracking" },
     { icon: Users, text: "Community access" },
@@ -54,6 +79,7 @@ function Profile() {
               </h1>
             </div>
 
+<<<<<<< HEAD
             <div className="space-y-2">
               {/* {[
                 { icon: BarChart3, text: 'Progress', active:'' },
@@ -72,83 +98,85 @@ function Profile() {
                   <div className="flex items-center gap-3">s
                     <item.icon className="h-5 w-5" />
                     <span className="font-medium">{item.text}</span>
+=======
+            <div className="space-y-3">
+              {/* Progress Button */}
+              <Link to="/progressTracker">
+                <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
+                  <div className="flex items-center gap-3">
+                    <BarChart3 className="h-5 w-5" />
+                    <span className="font-medium">Progress</span>
+>>>>>>> 455da66d5b5aaeb27b60a48820bc3293a9fd4842
                   </div>
-                  <ChevronRight className={`h-4 w-4 transition-transform ${item.active ? 'rotate-90' : ''}`} />
+                  <ChevronRight className="h-4 w-4 transition-transform rotate-90" />
                 </button>
-              ))} */}
+              </Link>
 
+              {/* Choose Sports Button */}
+              <Link to="/sports">
+                <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
+                  <div className="flex items-center gap-3">
+                    <Dumbbell className="h-5 w-5" />
+                    <span className="font-medium">Choose Sports</span>
+                  </div>
+                  <ChevronRight className="h-4 w-4 transition-transform" />
+                </button>
+              </Link>
 
-<div className="space-y-3">
-  {/* Progress Button */}
-  <Link to="/progressTracker">
-  <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all  text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
-    <div className="flex items-center gap-3">
-      <BarChart3 className="h-5 w-5" />
-      <span className="font-medium">Progress</span>
-    </div>
-    <ChevronRight className="h-4 w-4 transition-transform rotate-90" />
-  </button></Link>
+              {/* Market Button */}
+              <Link to="/market">
+                <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
+                  <div className="flex items-center gap-3">
+                    <ShoppingBasket className="h-5 w-5" />
+                    <span className="font-medium">Market</span>
+                  </div>
+                  <ChevronRight className="h-4 w-4 transition-transform" />
+                </button>
+              </Link>
 
-  {/* Choose Sports Button */}
-  <Link to="/sports">
-  <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
-    <div className="flex items-center gap-3">
-      <Dumbbell className="h-5 w-5" />
-      <span className="font-medium">Choose Sports</span>
-    </div>
-    <ChevronRight className="h-4 w-4 transition-transform" />
-  </button></Link>
+              {/* Calorie Counter Button */}
+              <Link to="/calorie">
+                <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
+                  <div className="flex items-center gap-3">
+                    <Apple className="h-5 w-5" />
+                    <span className="font-medium">Calorie Counter</span>
+                  </div>
+                  <ChevronRight className="h-4 w-4 transition-transform" />
+                </button>
+              </Link>
 
-  {/* Market Button */}
-
-  <Link to="/market">
-  <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
-    <div className="flex items-center gap-3">
-      <ShoppingBasket className="h-5 w-5" />
-      <span className="font-medium">Market</span>
-    </div>
-    <ChevronRight className="h-4 w-4 transition-transform" />
-  </button></Link>
-
- 
-  {/* Settings Button */}
-  <Link to="/calorie">
-  <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
-    <div className="flex items-center gap-3">
-      <Apple className="h-5 w-5" />
-      <span className="font-medium">Calorie Counter</span>
-    </div>
-    <ChevronRight className="h-4 w-4 transition-transform" />
-  </button></Link>
-
-  {/* Logout Button */}
-  <Link to="/">
-  <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
-    <div className="flex items-center gap-3">
-      <LogOut className="h-5 w-5" />
-      <span className="font-medium ">Logout</span>
-    </div>
-    <ChevronRight className="h-4 w-4 transition-transform" />
-  </button></Link>
-</div>
-
+              {/* Logout Button (For navigation, if any) */}
+              <Link to="/">
+                <button className="w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all text-gray-400 hover:bg-slate-800/50 hover:text-purple-400">
+                  <div className="flex items-center gap-3">
+                    <LogOut className="h-5 w-5" />
+                    <span className="font-medium">Logout</span>
+                  </div>
+                  <ChevronRight className="h-4 w-4 transition-transform" />
+                </button>
+              </Link>
             </div>
           </div>
 
           {/* Center Section - App Description & Features */}
           <div className="space-y-6">
             <div className="bg-slate-900/70 rounded-2xl p-6 backdrop-blur-xl border border-slate-800/50 shadow-xl">
+<<<<<<< HEAD
             <Trophy className="h-10 w-10 text-purple-500 inline mr-2 pb-2" />
                 {/* <div className="absolute inset-0 animate-pulse bg-purple-500/20 rounded-lg blur"></div> */}
 
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent  inline">
                 Elite Sports
+=======
+              <Trophy className="h-10 w-10 text-purple-500 inline mr-2 pb-2" />
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent inline">
+                FitForAll
+>>>>>>> 455da66d5b5aaeb27b60a48820bc3293a9fd4842
               </h1>
-              <div className='block '>
-           <Crown className="h-4 w-4 text-yellow-600 inline mr-2" />
-              <span className="text-sm text-yellow-500 inline">Premium Applied </span>
+              <div className="block">
+                <Crown className="h-4 w-4 text-yellow-600 inline mr-2" />
+                <span className="text-sm text-yellow-500 inline">Premium Applied</span>
               </div>
-
 
               <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-4">
                 Your Fitness Journey Starts Here
@@ -171,7 +199,10 @@ function Profile() {
                 </h3>
                 <div className="space-y-4">
                   {freeFeatures.map((feature, index) => (
-                    <div key={index} className="flex justify-between gap-3 text-gray-400 group hover:text-emerald-400 transition-colors">
+                    <div
+                      key={index}
+                      className="flex justify-between gap-3 text-gray-400 group hover:text-emerald-400 transition-colors"
+                    >
                       <feature.icon className="h-5 w-5 text-emerald-400 group-hover:scale-110 transition-transform" />
                       <span>{feature.text}</span>
                     </div>
@@ -188,55 +219,77 @@ function Profile() {
                 </h3>
                 <div className="space-y-4">
                   {premiumFeatures.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3 text-gray-400 group/item hover:text-purple-400 transition-colors">
+                    <div
+                      key={index}
+                      className="flex items-center gap-3 text-gray-400 group/item hover:text-purple-400 transition-colors"
+                    >
                       <feature.icon className="h-5 w-5 text-purple-400 group-hover/item:scale-110 transition-transform" />
                       <span>{feature.text}</span>
                     </div>
                   ))}
                 </div>
-                <button className='text-purple-400 border-2 m-3 p-3 rounded-2xl border-gray-400 hover:text-gray-400 hover:border-purple-400'>Buy Premium</button>
+                <button className="text-purple-400 border-2 m-3 p-3 rounded-2xl border-gray-400 hover:text-gray-400 hover:border-purple-400">
+                  Buy Premium
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Right Section - User Profile */}
-          <div className="bg-slate-900/70 rounded-2xl backdrop-blur-xl border border-slate-800/50 shadow-xl overflow-hidden">
+          {/* Right Section - User Profile (Clerk Data Integrated) */}
+          <div className="bg-slate-900/70 rounded-2xl backdrop-blur-xl border border-slate-800/50 shadow-xl overflow-hidden relative">
             <div className="h-24 bg-gradient-to-r from-purple-500/20 to-blue-500/20"></div>
             <Boxes className="h-10 w-10 text-purple-500" />
             <div className="absolute inset-0 animate-pulse bg-purple-500/20 rounded-lg blur"></div>
-            <div className="p-6 -mt-12">
+            <div className="p-6 -mt-12 relative">
               <div className="flex items-center gap-4 mb-6">
                 <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&q=80"
+                  src={userProfileImage}
                   alt="Profile"
                   className="h-16 w-16 rounded-full object-cover ring-4 ring-slate-900 shadow-xl"
                 />
                 <div>
-                  <h2 className="text-xl font-semibold text-white">Sarah Johnson</h2>
-                  <p className="text-gray-400">sarah.j@example.com</p>
+                  <h2 className="text-xl font-semibold text-white">{userName}</h2>
+                  <p className="text-gray-400">{userEmail}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
                     <span className="text-sm text-emerald-400">Online</span>
                     <Crown className="h-4 w-4 text-yellow-600" />
-                    <span className="text-sm text-yellow-500">Premium Applied </span>
-                    
+                    <span className="text-sm text-yellow-500">Premium Applied</span>
                   </div>
                 </div>
               </div>
 
+              {/* Safely handle user.createdAt */}
+              {/*
+                If user.createdAt can be null, we convert it safely:
+                const memberSince = user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A";
+              */}
               <div className="space-y-4">
                 {[
-                  { label: "Location", value: "San Francisco, CA" },
-                  { label: "Member Since", value: "January 2024" },
-                  { label: "Preferred Sports", value: "Running, Tennis" },
-                  { label: "Contact", value: "+1 (555) 123-4567" }
+                  { label: "Member Since", value: user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A" },
+                  { label: "Preferred Sports", value: preferredSports },
+                  { label: "Mobile Number", value: mobileNumber }
                 ].map((item, index) => (
-                  <div key={index} className="border-b border-slate-800/50 pb-3 hover:bg-slate-800/20 p-2 rounded transition-colors">
+                  <div
+                    key={index}
+                    className="border-b border-slate-800/50 pb-3 hover:bg-slate-800/20 p-2 rounded transition-colors"
+                  >
                     <p className="text-sm text-gray-500">{item.label}</p>
-                    <p className="text-white">{item.value}</p>
+                    <p className="text-white">{String(item.value)}</p>
+
                   </div>
                 ))}
               </div>
+
+              {/* Sign Out Button */}
+              <SignOutButton>
+                <button 
+                  className="mt-6 w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg transition-all bg-red-500 hover:bg-red-600 text-white"
+                >
+                  <LogOut className="h-5 w-5" />
+                  <span className="font-medium">Sign Out</span>
+                </button>
+              </SignOutButton>
 
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <div className="bg-purple-500/10 rounded-lg p-4 hover:bg-purple-500/20 transition-colors">
@@ -250,6 +303,7 @@ function Profile() {
               </div>
             </div>
           </div>
+          {/* End of Right Section */}
         </div>
       </div>
     </div>
@@ -257,8 +311,3 @@ function Profile() {
 }
 
 export default Profile;
-
-
-
-
-
