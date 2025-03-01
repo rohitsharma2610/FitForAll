@@ -647,7 +647,8 @@ export function HeroSection() {
     
       {/* Navbar */}
 
-    <nav className="bg-gray-800 p-4">
+
+      <nav className="bg-gray-800 p-4">
       <div className="flex justify-end items-center">
         {/* Signed-out view: Sign In button */}
         <SignedOut>
@@ -672,6 +673,8 @@ export function HeroSection() {
         </SignedIn>
       </div>
     </nav>
+ 
+
 
 
 
